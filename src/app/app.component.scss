@@ -1,0 +1,12 @@
+/* Wrapper */
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* Main Container */
+.main-container {
+  display: flex;
+  flex: 1;
+}

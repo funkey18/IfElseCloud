@@ -1,0 +1,12 @@
+/* You can add global styles to this file, and also import other style files */
+.cursor-pointer {
+  cursor: pointer;
+}
+.loader-icon {
+  transform: translate(-50%, -50%);
+  animation: moveInCircle 2s linear infinite;
+}
+@keyframes moveInCircle {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(1turn); }
+}
