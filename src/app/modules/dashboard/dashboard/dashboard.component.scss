@@ -34,6 +34,12 @@
   height: 100%;
 }
 
+.vendors-monitored-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .card {
   height: 100%;
   display: flex;
@@ -153,17 +159,47 @@
   text-align: center;
 }
 
+.progress-container {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.04);
+  padding: 24px 20px 32px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 260px;
+}
+
 .progress-circle {
   width: 128px;
   height: 128px;
   margin: 0 auto 16px;
   position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
 }
 
-.progress-svg {
-  width: 128px;
-  height: 128px;
-  transform: rotate(-90deg);
+.progress-circle {
+  position: relative;
+   width: 104px;
+  height: 152px;
+  margin: 0 auto 10px auto;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.progress-circle canvas {
+  width: 100px !important;
+  height: 100px !important;
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  pointer-events: none;
 }
 
 .progress-bg {
@@ -190,6 +226,18 @@
   font-size: 32px;
   font-weight: 700;
   color: #111827;
+  position: absolute;
+  left: 50%;
+  bottom: 8px;
+  transform: translateX(-50%);
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #9333ea;
+  background: #fff;
+  padding: 2px 12px;
+  border-radius: 16px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+  z-index: 2;
 }
 
 .progress-info {
@@ -197,6 +245,10 @@
   color: #6b7280;
   line-height: 1.5;
   margin-bottom: 16px;
+  color: #6b7280;
+  font-size: 0.95rem;
+  text-align: center;
+  margin: 10px 0;
 }
 
 .trend-indicator {
@@ -207,12 +259,22 @@
   color: #059669;
   font-size: 14px;
   margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #16a34a;
+  font-weight: 600;
+  margin: 12px 0 0 0;
+  font-size: 1rem;
 }
 
 .progress-actions {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
 }
 
 .link-button {
@@ -238,10 +300,20 @@
   color: #374151;
   cursor: pointer;
   transition: background-color 0.15s ease;
+  background: #9333ea;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.18s;
 }
 
 .upgrade-button:hover {
   background-color: #e5e7eb;
+  background: #7c3aed;
 }
 
 /* Table */
@@ -627,7 +699,6 @@
   background: #7c3aed;
 }
 
-/* No Team Members Found */
 .no-team-members {
   text-align: center;
   padding: 32px 0;
@@ -636,14 +707,12 @@
   font-weight: 500;
 }
 
-/* Pagination Controls */
 .pagination-controls-container {
   display: flex;
   justify-content: flex-end;
   margin-top: 24px;
 }
 
-/* Actions Cell */
 .actions-cell {
   display: flex;
   align-items: center;
@@ -661,7 +730,6 @@
   color: #9333ea;
 }
 
-/* Search Bar */
 .custom-search-bar {
   display: flex;
   align-items: center;
@@ -687,7 +755,6 @@
   font-size: 18px;
 }
 
-/* Items Per Page Dropdown */
 .custom-items-per-page {
   border: 1px solid #e5e7eb;
   border-radius: 8px;

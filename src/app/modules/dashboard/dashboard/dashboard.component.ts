@@ -22,6 +22,8 @@ import {
   Tooltip,
   Legend,
   Title,
+  PieController,
+  ArcElement,
 } from 'chart.js';
 import { ToastrService } from 'ngx-toastr';
 
@@ -32,7 +34,9 @@ Chart.register(
   LinearScale,
   Tooltip,
   Legend,
-  Title
+  Title,
+  PieController,
+  ArcElement
 );
 
 @Component({
@@ -50,6 +54,7 @@ Chart.register(
 })
 export class DashboardComponent implements OnInit, AfterViewInit {
   @ViewChild('vendorChart') vendorChartRef!: ElementRef<HTMLCanvasElement>;
+  @ViewChild('vendorsPieChart') vendorsPieChartRef!: ElementRef<HTMLCanvasElement>;
 
   grid_columns: any[] = [];
   grid_data: any[] = [];
@@ -76,6 +81,7 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.initVendorBreakdownChart();
+    this.initVendorsPieChart();
   }
 
   initVendorBreakdownChart(): void {
@@ -131,6 +137,37 @@ export class DashboardComponent implements OnInit, AfterViewInit {
             },
           },
         },
+      },
+    });
+  }
+
+  initVendorsPieChart(): void {
+    const ctx = this.vendorsPieChartRef?.nativeElement?.getContext('2d');
+    if (!ctx) {
+      console.error('Pie chart canvas context not found.');
+      return;
+    }
+    new Chart(ctx, {
+      type: 'doughnut',
+      data: {
+        labels: ['Used', 'Available'],
+        datasets: [
+          {
+            data: [88, 12],
+            backgroundColor: ['#9333ea', '#e5e7eb'],
+            borderWidth: 0,
+          },
+        ],
+      },
+      options: {
+        responsive: false,
+        cutout: '70%',
+        rotation: -90,
+        circumference: 180,
+        plugins: {
+          legend: { display: false },
+          tooltip: { enabled: false }
+        }
       },
     });
   }
@@ -200,7 +237,6 @@ export class DashboardComponent implements OnInit, AfterViewInit {
 
   showMemberNamePopup(member: any): void {
     this.selectedMemberName = `${member.name.first_name} ${member.name.last_name}`;
-    // Show the modal using Bootstrap's JS API
     const modal = document.getElementById('memberNameModal');
     if (modal) {
       // @ts-ignore
