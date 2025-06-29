@@ -61,6 +61,8 @@ export class DashboardComponent implements OnInit, AfterViewInit {
   page: number = 1;
   itemsPerPage: number = 10;
   loading: boolean = false;
+  selectAllChecked: boolean = false;
+  selectedMemberIds: Set<string> = new Set();
 
   constructor(
     private httpService: HttpService,
@@ -205,5 +207,25 @@ export class DashboardComponent implements OnInit, AfterViewInit {
       const bsModal = new window.bootstrap.Modal(modal);
       bsModal.show();
     }
+  }
+
+  toggleSelectAll(): void {
+    this.selectAllChecked = !this.selectAllChecked;
+    if (this.selectAllChecked) {
+      this.filteredMembers.forEach((member) => this.selectedMemberIds.add(member.id));
+    } else {
+      this.selectedMemberIds.clear();
+    }
+  }
+
+  toggleMemberSelection(memberId: string): void {
+    if (this.selectedMemberIds.has(memberId)) {
+      this.selectedMemberIds.delete(memberId);
+    } else {
+      this.selectedMemberIds.add(memberId);
+    }
+    this.selectAllChecked =
+      this.filteredMembers.length > 0 &&
+      this.filteredMembers.every((member) => this.selectedMemberIds.has(member.id));
   }
 }

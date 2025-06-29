@@ -117,7 +117,15 @@
     <table *ngIf="!loading" class="table align-middle mb-0 table-hover table-centered">
       <thead class="bg-light-subtle">
         <tr>
-          <th><input type="checkbox" aria-label="Select all" /></th>
+          <!-- Select All Checkbox in Table Header -->
+          <th>
+            <input
+              type="checkbox"
+              aria-label="Select all"
+              [checked]="selectAllChecked"
+              (change)="toggleSelectAll()"
+            />
+          </th>
           <th *ngFor="let column of grid_columns">{{ column.column_name }}</th>
           <th>Actions</th>
         </tr>
@@ -130,7 +138,13 @@
           ">
           <tr>
             <td>
-              <input type="checkbox" [attr.aria-label]="'Select ' + member.name.first_name" />
+              <!-- Row Checkbox in Table Body -->
+              <input
+                type="checkbox"
+                [checked]="selectedMemberIds.has(member.id)"
+                (change)="toggleMemberSelection(member.id)"
+                [attr.aria-label]="'Select ' + member.name.first_name"
+              />
             </td>
 
             <!-- Name Column -->
